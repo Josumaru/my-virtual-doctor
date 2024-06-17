@@ -35,7 +35,7 @@ interface Props {
 
 const ProfileButton: NextPage<Props> = ({ user }) => {
   return (
-    <>
+    <div className="flex">
       <Button variant={"ghost"} className="mx-1">
         <Link href="/contact" about="contact">
           Contact
@@ -81,7 +81,7 @@ const ProfileButton: NextPage<Props> = ({ user }) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </form>
-    </>
+    </div>
   );
 };
 

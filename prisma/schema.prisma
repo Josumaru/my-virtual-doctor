@@ -21,8 +21,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   image         String?
-  role          String?
-  password      String?
+  role          String    @default("kanja")
   accounts      Account[]
   sessions      Session[]
 
@@ -44,6 +43,7 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
+  password          String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -73,4 +73,28 @@ model VerificationToken {
 
   @@id([identifier, token])
   @@map("verification_token")
+}
+
+model Article {
+  articleId String  @unique
+  title     String
+  images    String?
+  content   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("article")
+}
+
+model Assistant {
+  assistantId String   @unique
+  name        String
+  model       String
+  expires     DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("assistant")
 }

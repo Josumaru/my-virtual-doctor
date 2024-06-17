@@ -9,7 +9,7 @@ const SignInButton: NextPage<Props> = ({}) => {
     "use server"
     await signIn();
   }}>
-    <Button type='submit'>Sign In</Button>
+    <Button variant={"outline"} type='submit'>Sign In</Button>
   </form>
 }
 
