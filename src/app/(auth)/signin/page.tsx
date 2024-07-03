@@ -20,14 +20,13 @@ import { Input } from "@/components/ui/input";
 import GoogleIcon from "@/assets/svgs/google.svg";
 import Image from "next/image";
 import GithubIcon from "@/assets/svgs/github.svg";
-import { Label } from "@radix-ui/react-label";
 import { signIn } from "next-auth/react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import Link from "next/link";
 
 interface Props {}
 
@@ -62,7 +61,7 @@ const LoginPage: NextPage<Props> = ({}) => {
   };
   return (
     <div className={"flex flex-row"}>
-      <div className={"flex justify-between flex-col p-20 w-1/2"}>
+      <div className={"hidden md:flex justify-between lg:justify-center flex-col p-20 w-1/2"}>
         <div>
           <div className={"pb-4"}>
             <b>Get Started</b>
@@ -82,19 +81,19 @@ const LoginPage: NextPage<Props> = ({}) => {
           </div>
         </div>
         <div>
-          <a className={"hover:underline px-3"} href="#">
+          <Link className={"hover:underline px-3"} target="_blank" href="/about">
             About
-          </a>
-          <a className={"hover:underline px-3"} href="#">
+          </Link>
+          <Link className={"hover:underline px-3"} target="_blank" href="https://github.com/Josumaru/my-virtual-doctor/blob/main/README.md">
             Term & Conditions
-          </a>
-          <a className={"hover:underline px-3"} href="#">
-            Contact
-          </a>
+          </Link>
+          <Link className={"hover:underline px-3"} target="_blank" href="https://github.com/Josumaru/my-virtual-doctor/">
+            Source
+          </Link>
         </div>
       </div>
-      <div className="w-1/2 flex justify-center h-screen items-center">
-        <Card className={"p-5 w-max h-max"}>
+      <div className="w-screen p-4 md:p-0 md:w-1/2 flex justify-center h-screen items-center">
+        <Card className={"pt-5 md:p-5 w-screen md:w-max h-max"}>
           {error !== "" ? (
             <Alert variant={"destructive"} className={"mx-5 w-auto"}>
               <AlertTitle>Failed to login</AlertTitle>
@@ -105,51 +104,53 @@ const LoginPage: NextPage<Props> = ({}) => {
           ) : (
             <div></div>
           )}
-          <CardTitle className={"p-5"}>Welcome back</CardTitle>
+          <CardTitle className={"p-5 md:p-5"}>Welcome back</CardTitle>
           <CardContent>
             <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger
-                  asChild
-                  onClick={() => {
-                    signIn("google");
-                  }}
-                >
-                  <Button variant="outline" className={"mr-1"}>
-                    <Image
-                      priority
-                      width={20}
-                      src={GoogleIcon}
-                      alt="Google Icon"
-                    />
-                    <p className={"px-1"}>Log in With Google</p>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Log in with Google</p>
-                </TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger
-                  asChild
-                  onClick={() => {
-                    signIn("github");
-                  }}
-                >
-                  <Button variant="outline" className={"ml-1"}>
-                    <Image
-                      priority
-                      width={20}
-                      src={GithubIcon}
-                      alt="Github Icons"
-                    />
-                    <p className={"px-1"}>Log in With GitHub</p>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Log in with Github</p>
-                </TooltipContent>
-              </Tooltip>
+              <div className="flex">
+                <Tooltip>
+                  <TooltipTrigger
+                    asChild
+                    onClick={() => {
+                      signIn("google");
+                    }}
+                  >
+                    <Button variant="outline" className={"mr-1 w-1/2"}>
+                      <Image
+                        priority
+                        width={20}
+                        src={GoogleIcon}
+                        alt="Google Icon"
+                      />
+                      <p className={"px-1 text-sm"}>Google</p>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Log in with Google</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger
+                    asChild
+                    onClick={() => {
+                      signIn("github");
+                    }}
+                  >
+                    <Button variant="outline" className={"ml-1 w-1/2"}>
+                      <Image
+                        priority
+                        width={20}
+                        src={GithubIcon}
+                        alt="Github Icons"
+                      />
+                      <p className={"px-1"}>GitHub</p>
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Log in with Github</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
             </TooltipProvider>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -178,7 +179,7 @@ const LoginPage: NextPage<Props> = ({}) => {
                       <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
-                          type="passwoord"
+                          type="password"
                           placeholder="••••••••"
                           {...field}
                           required
@@ -188,8 +189,8 @@ const LoginPage: NextPage<Props> = ({}) => {
                   )}
                 />
                 <div className="space-x-2 py-2 flex items-center">
-                  <Checkbox />
-                  <Label>Remember me</Label>
+                  {/* <Checkbox />
+                  <Label>Remember me</Label> */}
                 </div>
                 <div className="flex justify-between w-auto">
                   <Button

@@ -16,14 +16,15 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String     @id @default(cuid())
   name          String?
-  email         String    @unique
+  email         String     @unique
   emailVerified DateTime?
   image         String?
-  role          String    @default("kanja")
+  role          String     @default("patient")
   accounts      Account[]
   sessions      Session[]
+  question      Question[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -88,13 +89,32 @@ model Article {
 }
 
 model Assistant {
-  assistantId String   @unique
+  assistantId String @id @default(cuid())
   name        String
   model       String
-  expires     DateTime
+  image       String
+  description String
+  point       Int    @default(0)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  Question  Question[]
 
   @@map("assistant")
+}
+
+model Question {
+  questionId  String  @id @unique @default(cuid())
+  question    String
+  answer      String?
+  pending     Boolean @default(true)
+  assistantId String
+  userId      String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  assistant Assistant @relation(fields: [assistantId], references: [assistantId], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("question")
 }

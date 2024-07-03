@@ -52,7 +52,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 const NavbarNavigationMenu: NextPage<Props> = ({}) => {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden sm:block">
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Get Started</NavigationMenuTrigger>
@@ -69,26 +69,24 @@ const NavbarNavigationMenu: NextPage<Props> = ({}) => {
                       Virtual Doctor/vido
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Beautifully designed components that you can copy and
-                      paste into your apps. Accessible. Customizable. Open
-                      Source.
+                      VIDO
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
               <ListItem href="/" title="Introduction">
-                Re-usable components built using Radix UI and Tailwind CSS.
+                VIDO is ...
               </ListItem>
-              <ListItem href="/" title="Get API">
-                How to install dependencies and structure your app.
+              <ListItem href="/" title="Firebase Genkit">
+                Powered by Firebase Genkit.
               </ListItem>
               <ListItem href="/" title="Virtual Asistant">
-                Styles for headings, paragraphs, lists...etc
+                Chit, Chat, and...etc
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuTrigger>Health News</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -103,7 +101,7 @@ const NavbarNavigationMenu: NextPage<Props> = ({}) => {
               ))}
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
         <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink
