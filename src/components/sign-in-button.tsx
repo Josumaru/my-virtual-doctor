@@ -1,16 +1,18 @@
-import { signIn } from '@/auth'
-import { NextPage } from 'next'
-import { Button } from './ui/button'
+import { signIn } from "@/auth";
+import { NextPage } from "next";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 interface Props {}
 
 const SignInButton: NextPage<Props> = ({}) => {
-  return <form action={async()=>{
-    "use server"
-    await signIn();
-  }}>
-    <Button variant={"outline"} type='submit'>Sign In</Button>
-  </form>
-}
+  return (
+    <Link href={"/api/auth/signin"}>
+      <Button variant={"outline"} type="submit">
+        Sign In
+      </Button>
+    </Link>
+  );
+};
 
-export default SignInButton
+export default SignInButton;
