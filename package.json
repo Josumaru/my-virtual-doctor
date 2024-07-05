@@ -5,7 +5,8 @@
     "build": "next build",
     "build:watch": "tsc --watch",
     "dev": "next dev",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "name": "virtual-doctor",
   "version": "0.1.0",
