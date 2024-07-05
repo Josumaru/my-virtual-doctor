@@ -1,12 +1,12 @@
 import { NextPage } from 'next'
-import { ReactNode } from 'react'
+import { ReactNode, Suspense } from 'react'
 
 interface Props {
     children: ReactNode
 }
 
 const AuthLayout: NextPage<Props> = ({children}) => {
-  return <div>{children}</div>
+  return <Suspense>{children}</Suspense>
 }
 
 export default AuthLayout

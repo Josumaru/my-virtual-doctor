@@ -83,120 +83,117 @@ const LoginPage: NextPage<Props> = ({}) => {
     setIsLoading(false);
   };
   return (
-    <Suspense>
-      <div>
-        <div className={"flex flex-row lg:px-52 items-center"}>
-          <div
-            className={
-              "hidden md:flex justify-between lg:justify-center flex-col w-1/2 md:p-4 lg:p-0"
-            }
-          >
-            <div>
-              <div className={"pb-4"}>
-                <b>Get Started</b>
-                <p className={"text-neutral-500"}>
-                  Discover the best way to solve your health issues
-                </p>
-              </div>
-              <div className={"pb-4"}>
-                <b>Assisted by Virtual Doctor</b>
-                <p className={"text-neutral-500"}>Receive answers in seconds</p>
-              </div>
-              <div className={"pb-4"}>
-                <b>Join Millions of Article Publishers</b>
-                <p className={"text-neutral-500"}>
-                  Create and publish your articles
-                </p>
-              </div>
+    <div>
+      <div className={"flex flex-row lg:px-52 items-center"}>
+        <div
+          className={
+            "hidden md:flex justify-between lg:justify-center flex-col w-1/2 md:p-4 lg:p-0"
+          }
+        >
+          <div>
+            <div className={"pb-4"}>
+              <b>Get Started</b>
+              <p className={"text-neutral-500"}>
+                Discover the best way to solve your health issues
+              </p>
             </div>
-            <div>
-              <Link
-                className={"hover:underline pr-6"}
-                target="_blank"
-                href="/about"
-              >
-                About
-              </Link>
-              <Link
-                className={"hover:underline pr-6"}
-                target="_blank"
-                href="https://github.com/Josumaru/my-virtual-doctor/blob/main/README.md"
-              >
-                Term & Conditions
-              </Link>
-              <Link
-                className={"hover:underline pr-6"}
-                target="_blank"
-                href="https://github.com/Josumaru/my-virtual-doctor/"
-              >
-                Source
-              </Link>
+            <div className={"pb-4"}>
+              <b>Assisted by Virtual Doctor</b>
+              <p className={"text-neutral-500"}>Receive answers in seconds</p>
+            </div>
+            <div className={"pb-4"}>
+              <b>Join Millions of Article Publishers</b>
+              <p className={"text-neutral-500"}>
+                Create and publish your articles
+              </p>
             </div>
           </div>
-          <div className="w-screen p-4 md:p-0 md:w-1/2 flex justify-center h-screen items-center flex-col">
-            <p className="text-lg mb-4">
-              <strong>VIDO</strong> - Virtual Doctor
-            </p>
-            <Card
-              className={"pt-5 m-1 md:p-5 w-full md:w-[400px] md:m-4 h-max"}
+          <div>
+            <Link
+              className={"hover:underline pr-6"}
+              target="_blank"
+              href="/about"
             >
-              {error !== null ? (
-                <Alert variant={"destructive"} className={"mx-5 w-auto"}>
-                  <AlertTitle>{error.title}</AlertTitle>
-                  <AlertDescription>{error.content}</AlertDescription>
-                </Alert>
-              ) : (
-                <div></div>
-              )}
-              <CardTitle className={"p-5 md:p-5"}>Welcome back</CardTitle>
-              <CardContent>
-                <TooltipProvider>
-                  <div className="flex pt-4">
-                    <Tooltip>
-                      <TooltipTrigger
-                        asChild
-                        onClick={() => {
-                          signIn("google");
-                        }}
-                      >
-                        <Button variant="outline" className={"mr-1 w-1/2"}>
-                          <Image
-                            priority
-                            width={20}
-                            src={GoogleIcon}
-                            alt="Google Icon"
-                          />
-                          <p className={"px-1 text-sm"}>Google</p>
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Log in with Google</p>
-                      </TooltipContent>
-                    </Tooltip>
-                    <Tooltip>
-                      <TooltipTrigger
-                        asChild
-                        onClick={() => {
-                          signIn("github");
-                        }}
-                      >
-                        <Button variant="outline" className={"ml-1 w-1/2"}>
-                          <Image
-                            priority
-                            width={20}
-                            src={GithubIcon}
-                            alt="Github Icons"
-                          />
-                          <p className={"px-1"}>GitHub</p>
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Log in with Github</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </div>
-                </TooltipProvider>
-                {/* <Form {...form}>
+              About
+            </Link>
+            <Link
+              className={"hover:underline pr-6"}
+              target="_blank"
+              href="https://github.com/Josumaru/my-virtual-doctor/blob/main/README.md"
+            >
+              Term & Conditions
+            </Link>
+            <Link
+              className={"hover:underline pr-6"}
+              target="_blank"
+              href="https://github.com/Josumaru/my-virtual-doctor/"
+            >
+              Source
+            </Link>
+          </div>
+        </div>
+        <div className="w-screen p-4 md:p-0 md:w-1/2 flex justify-center h-screen items-center flex-col">
+          <p className="text-lg mb-4">
+            <strong>VIDO</strong> - Virtual Doctor
+          </p>
+          <Card className={"pt-5 m-1 md:p-5 w-full md:w-[400px] md:m-4 h-max"}>
+            {error !== null ? (
+              <Alert variant={"destructive"} className={"mx-5 w-auto"}>
+                <AlertTitle>{error.title}</AlertTitle>
+                <AlertDescription>{error.content}</AlertDescription>
+              </Alert>
+            ) : (
+              <div></div>
+            )}
+            <CardTitle className={"p-5 md:p-5"}>Welcome back</CardTitle>
+            <CardContent>
+              <TooltipProvider>
+                <div className="flex pt-4">
+                  <Tooltip>
+                    <TooltipTrigger
+                      asChild
+                      onClick={() => {
+                        signIn("google");
+                      }}
+                    >
+                      <Button variant="outline" className={"mr-1 w-1/2"}>
+                        <Image
+                          priority
+                          width={20}
+                          src={GoogleIcon}
+                          alt="Google Icon"
+                        />
+                        <p className={"px-1 text-sm"}>Google</p>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Log in with Google</p>
+                    </TooltipContent>
+                  </Tooltip>
+                  <Tooltip>
+                    <TooltipTrigger
+                      asChild
+                      onClick={() => {
+                        signIn("github");
+                      }}
+                    >
+                      <Button variant="outline" className={"ml-1 w-1/2"}>
+                        <Image
+                          priority
+                          width={20}
+                          src={GithubIcon}
+                          alt="Github Icons"
+                        />
+                        <p className={"px-1"}>GitHub</p>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Log in with Github</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </TooltipProvider>
+              {/* <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
                   <FormField
                     control={form.control}
@@ -247,13 +244,12 @@ const LoginPage: NextPage<Props> = ({}) => {
                   </div>
                 </form>
               </Form> */}
-              </CardContent>
-            </Card>
-          </div>
+            </CardContent>
+          </Card>
         </div>
-        <Footer />
       </div>
-    </Suspense>
+      <Footer />
+    </div>
   );
 };
 

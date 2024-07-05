@@ -13,6 +13,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
   },
+  trustHost: true,
   // Set specify the custom route
   pages: {
     signIn: "/signin",
@@ -41,6 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
     Google({
       allowDangerousEmailAccountLinking: true,
+      
     }),
     Github({
       allowDangerousEmailAccountLinking: true,
