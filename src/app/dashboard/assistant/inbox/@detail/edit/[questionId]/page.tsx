@@ -44,7 +44,7 @@ const QuestionEditPage: NextPage<Params> = ({ params }) => {
       setIsLoading(false);
     };
     fetchQuestion();
-  }, []);
+  }, [params.questionId]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

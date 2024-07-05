@@ -47,7 +47,7 @@ const HomeCarousel: NextPage<Props> = ({}) => {
   ];
 
   return (
-    <div className="w-full h-screen overflow-x-hidden flex justify-between flex-col items-center border-r pt-24 px-4">
+    <div className="w-full h-screen overflow-x-hidden flex justify-between flex-col items-center lg:border-r pt-24 px-4">
       <div className="flex items-center flex-col mb-10">
         <b>Chat with cute assistant</b>
         <p className={"text-neutral-500 text-sm text-center"}>
@@ -79,9 +79,9 @@ const HomeCarousel: NextPage<Props> = ({}) => {
         </Carousel>
       </div>
       <div className="py-2 text-center text-sm text-muted-foreground">
-        Slide {current} of {count}
+        Image {current} of {count}
       </div>
-      <div className={"flex justify-start items-start flex-col md:p-20 w-full"}>
+      <div className={"flex justify-start items-start flex-col lg:p-0 md:p-20 w-full"}>
         <div>
           <div className={"pb-4"}>
             <b>Get Started</b>

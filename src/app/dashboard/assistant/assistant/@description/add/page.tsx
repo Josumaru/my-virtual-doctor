@@ -54,7 +54,6 @@ const AssistantAddPage: NextPage<Props> = ({}) => {
     }
     try {
       await addAssistantAction(data);
-      console.log("Add Assistant");
       toast({
         title: "Assistant Added",
         description: `New Assistant added, Dr. ${formData.name}`,

@@ -29,7 +29,6 @@ const AssistantEditPage: NextPage<Params> = ({ params }) => {
     image: "",
   });
   useEffect(() => {
-    console.log(formData);
     const fetchAssistant = async () => {
       const assistant = await searchAssistantAction(params.assistantId);
       if (assistant) {
@@ -43,7 +42,7 @@ const AssistantEditPage: NextPage<Params> = ({ params }) => {
       setIsLoading(false);
     };
     fetchAssistant();
-  }, []);
+  }, [formData, params.assistantId]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

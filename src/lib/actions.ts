@@ -2,11 +2,37 @@
 import { auth, signOut } from "@/auth";
 import prisma from "./db";
 import { put } from "@vercel/blob";
-import { Prisma, Question } from "@prisma/client";
-import { FormEvent } from "react";
 
-const url = "http://localhost:3400/assistantFlow";
+const url = process.env.VIDO_API;
 
+const UpdateNewUserAction = async (formData: FormData) => {
+  try {
+    const userId = formData.get("userId") as string;
+    const name = formData.get("name") as string;
+    let imageUrl = formData.get("imageUrl") as string;
+    const imageFile = formData.get("image") as File | null;
+
+    if (imageFile) {
+      const uploadResult = await put(imageFile.name, imageFile, {
+        access: "public",
+      });
+      imageUrl = uploadResult.url;
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        name: name,
+        image: imageUrl,
+      },
+    });
+    
+    return updatedUser;
+  } catch (error) {
+    console.error("Failed to update user:", error);
+    throw new Error("Failed to update user");
+  }
+};
 
 const addAssistantAction = async (formData: FormData) => {
   try {
@@ -34,13 +60,12 @@ const addAssistantAction = async (formData: FormData) => {
   }
 };
 const getAssistantAction = async () => {
-  return await prisma.assistant.findMany(
-    {
-      orderBy:{
-        point: "desc"
-      }
+  const assistant = await prisma.assistant.findMany({
+    orderBy: {
+      point: "desc"
     }
-  );
+  });
+  return assistant
 };
 
 const searchAssistantAction = async (assistantId: string) => {
@@ -119,15 +144,28 @@ const updateQuestionAction = async (formData: FormData) => {
   }
 };
 
-const forwardQuestionAction = async (questionId: string) => {
+const forwardQuestionAction = async (questionId: string, assistantId: string) => {
   try {
-    const assistant = await prisma.question.update({
+    const question = await prisma.question.update({
       where: { questionId: questionId },
       data: {
         pending: false,
       },
     });
-    return assistant.answer;
+    const assistant = await prisma.assistant.findFirst({
+      where: {
+        assistantId: assistantId,
+      }
+    })
+    const point = assistant?.point! + 15
+    
+    await prisma.assistant.update({
+      where: {assistantId: assistantId},
+      data: {
+        point: point
+      }
+    })
+    return question.answer;
   } catch (error) {
     console.log(error);
 
@@ -204,7 +242,7 @@ const addQuestionAction = async (
     body: JSON.stringify(data),
   };
 
-  const response = await fetch(url, options)
+  const response = await fetch(url!, options)
     .then((response) => response.json())
     .catch((error) => console.error("Error:", error));
 
@@ -213,7 +251,7 @@ const addQuestionAction = async (
       questionId: questionId,
     },
     data: {
-      answer: response.result,
+      answer: response.result.replace("**Cute Response:**", "").replace("**Tsundere Response:**",""),
     },
   });
   return questionUpdate;
@@ -244,4 +282,5 @@ export {
   updateQuestionAction,
   forwardQuestionAction,
   getAllQuestionsAction,
+  UpdateNewUserAction,
 };

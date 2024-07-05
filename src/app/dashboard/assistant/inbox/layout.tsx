@@ -4,11 +4,10 @@ import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-react";
 import { NextPage } from "next";
 import { ResizableHandle, ResizablePanel } from "@/components/ui/resizable";
-import { Badge, badgeVariants } from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { useEffect, useState } from "react";
 import { getAllQuestionsAction } from "@/lib/actions";
-import { Assistant, Prisma, Question, User } from "@prisma/client";
-import prisma from "@/lib/db";
+import { Assistant, Question, User } from "@prisma/client";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Props {
@@ -56,9 +55,9 @@ const AssistantLayout: NextPage<Props> = ({ detail }) => {
         </div>
         <ResizablePanel defaultSize={60} className="flex flex-col">
           <ScrollArea>
-            {questions.map((question) => {
+            {questions.map((question, index) => {
               return (
-                <Link href={`/dashboard/assistant/inbox/${question.questionId}`}>
+                <Link href={`/dashboard/assistant/inbox/${question.questionId}`} key={index}>
                   <div className="w-auto border p-1 m-1 rounded-lg hover:bg-neutral-100 cursor-pointer">
                     <div className="flex justify-between">
                       <p className="font-semibold">{question?.user.name}</p>

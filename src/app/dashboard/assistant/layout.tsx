@@ -12,15 +12,16 @@ import { useState } from "react";
 
 interface Props {
   children: React.ReactNode;
-  assistant: React.ReactNode;
-  inbox: React.ReactNode;
 }
 
-const AssistantLayout: NextPage<Props> = ({ children, assistant, inbox }) => {
+const AssistantLayout: NextPage<Props> = ({ children }) => {
   const [selectedNav, setSelectedNav] = useState<string>("assistant");
 
   return (
-    <ResizablePanelGroup direction="horizontal" className="border rounded-lg h-full">
+    <ResizablePanelGroup
+      direction="horizontal"
+      className="border rounded-lg h-full"
+    >
       <ResizablePanel defaultSize={15}>
         <div className="border-b pr-2"></div>
         <div className="w-auto flex flex-col">

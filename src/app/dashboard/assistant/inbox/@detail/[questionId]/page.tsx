@@ -66,7 +66,7 @@ const QuestionDetailPage: NextPage<Params> = ({ params }) => {
       }
     };
     fetchQuestion();
-  }, [params.questionId]);
+  }, [params.questionId, assistant?.name]);
 
   const handleForward = async () => {
     toast({
@@ -75,7 +75,7 @@ const QuestionDetailPage: NextPage<Params> = ({ params }) => {
       action: <ToastAction altText="Close">Close</ToastAction>,
     });
     try {
-      const response = await forwardQuestionAction(params.questionId);
+      const response = await forwardQuestionAction(params.questionId, assistant?.assistantId!);
       toast({
         title: "Forwarded",
         description: `Response from Dr. ${assistant?.name}`,

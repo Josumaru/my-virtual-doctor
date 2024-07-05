@@ -28,8 +28,8 @@ const AssistantLayout: NextPage<Props> = async ({ children, description }) => {
           </div>
         </div>
         <ResizablePanel defaultSize={60} className="flex flex-col">
-          {assistants.map((assistant) => {
-            return <AssistantCard data={assistant}></AssistantCard>;
+          {assistants.map((assistant, index) => {
+            return <AssistantCard key={index} data={assistant}></AssistantCard>;
           })}
         </ResizablePanel>
       </ResizablePanel>

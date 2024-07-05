@@ -69,24 +69,26 @@ const NavbarNavigationMenu: NextPage<Props> = ({}) => {
                       Virtual Doctor/vido
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      VIDO
+                      Virtual Doctor strives to be a modern solution that
+                      combines advanced technology with validated professional
+                      doctors to provide fast, accurate, and reliable services.
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
               <ListItem href="/" title="Introduction">
-                VIDO is ...
+                VIDO is a cute and friendly assistant.
               </ListItem>
-              <ListItem href="/" title="Firebase Genkit">
+              <ListItem href="https://firebase.google.com/docs/genkit" title="Firebase Genkit">
                 Powered by Firebase Genkit.
               </ListItem>
-              <ListItem href="/" title="Virtual Asistant">
-                Chit, Chat, and...etc
+              <ListItem href="/home" title="Virtual Asistant">
+                Cute assistant ready to help you anywhere and anytime
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        {/* <NavigationMenuItem>
+        <NavigationMenuItem>
           <NavigationMenuTrigger>Health News</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -101,7 +103,7 @@ const NavbarNavigationMenu: NextPage<Props> = ({}) => {
               ))}
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem> */}
+        </NavigationMenuItem>
         <NavigationMenuItem>
           <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink

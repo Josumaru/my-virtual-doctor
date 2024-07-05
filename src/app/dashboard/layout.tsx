@@ -1,5 +1,4 @@
 "use client";
-import { auth } from "@/auth";
 import ProfileButton from "@/components/profile-button";
 import {
   ResizableHandle,
@@ -8,33 +7,30 @@ import {
 } from "@/components/ui/resizable";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getUserAction } from "@/lib/actions";
-import { NextPage } from "next";
 import { User } from "next-auth";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface Props {
-  children: React.ReactNode;
-  overview: React.ReactNode;
-  inbox: React.ReactNode;
-  assistant: React.ReactNode;
+  children: React.ReactNode,
+  overview: React.ReactNode,
+  assistant: React.ReactNode,
 }
 
-const DashboardLayout: NextPage<Props> = ({
+const DashboardLayout: React.FC<Props> = ({
   children,
   overview,
-  inbox,
   assistant,
 }) => {
   const [activeButton, setActiveButton] = useState<string>("overview");
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
-    const fetcthUser = async () => {
+    const fetchUser = async () => {
       const user = await getUserAction();
       setUser(user);
     };
-    fetcthUser();
+    fetchUser();
   }, []);
 
   return (

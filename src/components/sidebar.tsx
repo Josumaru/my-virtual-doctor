@@ -5,12 +5,12 @@ import {
   UsersRound,
   MessageCircleMore,
   NewspaperIcon,
-  LucideLogOut,
   LucideLayoutDashboard,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import SidebarLink from "./sidebar-icon";
 import { getUserAction } from "@/lib/actions";
+import LogoutButton from "./logout-button";
 
 interface Props {}
 
@@ -25,8 +25,8 @@ const Sidebar: NextPage<Props> = async ({}) => {
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col">
         <nav className="grid gap-2 text-sm font-medium">
-          <p className="text-sm text-bold">
-            VIDO - <span>Virtual Doctor</span>
+          <p className="text-sm text-bold pb-4">
+            <strong>VIDO</strong> - <span>Virtual Doctor</span>
           </p>
 
           <SidebarLink
@@ -58,12 +58,7 @@ const Sidebar: NextPage<Props> = async ({}) => {
             <div></div>
           )}
         </nav>
-        <div className="mt-auto">
-          <Button variant={"outline"} className="flex items-center w-full">
-            <LucideLogOut />
-            <p>Logout</p>
-          </Button>
-        </div>
+        <div className="mt-auto">{user ? <LogoutButton /> : <div></div>}</div>
       </SheetContent>
     </Sheet>
   );

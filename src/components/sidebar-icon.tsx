@@ -17,10 +17,10 @@ const SidebarLink: NextPage<Props> = ({ props }) => {
     <SheetTrigger asChild>
       <Link
         href={props.href}
-        className="mx-[-0.65rem] flex items-center gap-4 rounded-lg px-3 py-2 text-muted-foreground hover:text-foreground hover:bg-neutral-100"
+        className="mx-[-0.65rem] flex items-center gap-4 rounded-lg px-3 py-2 justify-between hover:text-foreground hover:bg-neutral-100"
       >
-        {props.icon}
         <p className="text-sm">{props.text}</p>
+        {props.icon}
       </Link>
     </SheetTrigger>
   );

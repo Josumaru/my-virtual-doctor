@@ -1,6 +1,6 @@
 import Navbar from "@/components/navbar";
 import Image from "next/image";
-import BannerImage from "@/assets/images/kaguya_0.png";
+import BannerImage from "@/assets/images/kaguya_1.png";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Footer from "@/components/footer";
@@ -10,7 +10,7 @@ export default async function Home() {
     <>
       <Navbar/>
       <div className="flex flex-row h-screen p-7 overflow-hidden px-7 lg:px-52">
-        <div className="w-screen lg:w-1/2 flex flex-col justify-center">
+        <div className="w-screen 2xl:w-1/2 flex flex-col justify-center">
           <b className="text-xl md:text-3xl lg:text-6xl text-neutral-700">
             Modern Healthcare Solutions
           </b>

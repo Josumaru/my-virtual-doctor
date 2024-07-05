@@ -9,10 +9,10 @@ interface Props {}
 const HomePage: NextPage<Props> = async ({}) => {
   return (
     <div>
-      <div className="flex flex-col lg:flex-row">
-        <Navbar />
+      <Navbar />
+      <div className="flex flex-col lg:flex-row pt-5 lg:px-52">
         <HomeCarousel />
-        <div className="lg:w-2/5">
+        <div className="lg:w-4/5">
           <TopAssistantComponent />
         </div>
       </div>

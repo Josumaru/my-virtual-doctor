@@ -31,11 +31,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           // return user object with the their profile data
         } catch (error) {
+          console.log(error);
           if (error instanceof ZodError) {
             return null;
           }
         }
-
         return user;
       },
     }),
@@ -47,9 +47,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   callbacks: {
-    async jwt({ user, token }) {
+    async jwt({ user, token, trigger, session }) {
       if (user) {
         token.user = user;
+      } else if (trigger === "update" && session?.name) {
+        // Note, that `session` can be any arbitrary object, remember to validate it!
+        token.name = session.name;
       }
       return token;
     },

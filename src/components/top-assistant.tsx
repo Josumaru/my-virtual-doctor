@@ -12,6 +12,7 @@ const TopAssistantComponent: NextPage<Props> = async ({}) => {
 
   try {
     assistants = await getAssistantAction();
+    assistants.sort()
   } catch (error) {
     console.log(error);
   }
